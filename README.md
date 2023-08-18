@@ -49,7 +49,7 @@ yarn
 yarn
 ```
 
-## Run Lermo wev
+## Run Lermo web
 
 ```bash
 yarn dev
