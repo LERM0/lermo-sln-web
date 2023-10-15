@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
-import {
-  IconHome, IconPlaylist, IconClassroom, IconSetting,
-} from '@components/atoms/icons';
+import { IconHome, IconPlaylist, IconClassroom, IconSetting } from '@components/atoms/icons';
 
 import Style from './style';
 
@@ -39,32 +37,16 @@ const SiderHome = ({ isCollapsed }) => {
 
   return (
     <Style>
-      <Sider
-        width={260}
-        collapsedWidth={100}
-        collapsed={isCollapsed}
-        trigger={null}
-        collapsible
-      >
-        <div className="logo">
-          {/* {LogoComponent} */}
-        </div>
-        <Menu
-          className="menu-custom menu-row"
-          mode="inline"
-          selectedKeys={[pathname]}
-        >
+      <Sider width={260} collapsedWidth={100} collapsed={isCollapsed} trigger={null} collapsible>
+        <div className="logo">{/* {LogoComponent} */}</div>
+        <Menu className="menu-custom menu-row" mode="inline" selectedKeys={[pathname]}>
           <Menu.Item key="/" icon={<IconHome />}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
+            <Link href="/">Home</Link>
           </Menu.Item>
         </Menu>
 
         {UserMenuComponent}
-
       </Sider>
-
     </Style>
   );
 };

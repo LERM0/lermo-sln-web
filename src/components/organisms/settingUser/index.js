@@ -17,15 +17,13 @@ const SettingUser = ({ data }) => {
   const menu = (
     <Menu style={{ width: '200px' }}>
       <Menu.Item>
-        <a href="/space/myspace">
+        <Link href="/space/myspace">
           <PlayCircleOutlined /> Space
-        </a>
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href="/profile/edit">
-          <a>
-            <UserOutlined /> Profile
-          </a>
+          <UserOutlined /> Profile
         </Link>
       </Menu.Item>
       <Menu.Item onClick={() => dispatch(logout())}>
@@ -36,17 +34,15 @@ const SettingUser = ({ data }) => {
 
   let UserAvatar;
   if (avatar) {
-    UserAvatar = (<Avatar size={40} src={avatar} />);
+    UserAvatar = <Avatar size={40} src={avatar} />;
   } else {
-    UserAvatar = (<Avatar size={40} src="/images/default-user-avatar.jpg" />);
+    UserAvatar = <Avatar size={40} src="/images/default-user-avatar.jpg" />;
   }
 
   return (
     <Style>
       <div className="setting-item">
-        <Dropdown overlay={menu}>
-          {UserAvatar}
-        </Dropdown>
+        <Dropdown overlay={menu}>{UserAvatar}</Dropdown>
       </div>
     </Style>
   );

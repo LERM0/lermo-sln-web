@@ -1,14 +1,9 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  MenuOutlined,
-  BellOutlined,
-} from '@ant-design/icons';
+import { MenuOutlined, BellOutlined } from '@ant-design/icons';
 
-import {
-  Input, Col, Row, Badge,
-} from 'antd';
+import { Input, Col, Row, Badge } from 'antd';
 import Logo from '@components/atoms/logo';
 import SettingUser from '@components/organisms/settingUser';
 import { IconSearch } from '@components/atoms/icons';
@@ -41,16 +36,20 @@ const HeaderMain = ({ onClickCollapsed = () => {} }) => {
   let SettingComponent;
   let NotiBadgeCompoent;
   if (profile) {
-    SettingComponent = (<div className="main-menu-item"><SettingUser data={profile} /></div>);
-    NotiBadgeCompoent = (<div className="main-menu-item"><NotiBadge data={noti} /></div>);
+    SettingComponent = (
+      <div className="main-menu-item">
+        <SettingUser data={profile} />
+      </div>
+    );
+    NotiBadgeCompoent = (
+      <div className="main-menu-item">
+        <NotiBadge data={noti} />
+      </div>
+    );
   } else {
     SettingComponent = (
       <Link href="/signin">
-        <a>
-          <MainButton fit>
-            Sign In
-          </MainButton>
-        </a>
+        <MainButton fit>Sign In</MainButton>
       </Link>
     );
   }
@@ -59,7 +58,9 @@ const HeaderMain = ({ onClickCollapsed = () => {} }) => {
     <Style>
       <div className="main-menu">
         <div className="main-menu-item collapse-btn" onClick={onClickCollapsed}>
-          <MainButton><MenuOutlined /></MainButton>
+          <MainButton>
+            <MenuOutlined />
+          </MainButton>
         </div>
         <div className="main-menu-item" onClick={onClickLogo}>
           <Logo />
@@ -81,8 +82,8 @@ const HeaderMain = ({ onClickCollapsed = () => {} }) => {
             </div>
           </MainButton>
         </div> */}
-        { NotiBadgeCompoent }
-        { SettingComponent }
+        {NotiBadgeCompoent}
+        {SettingComponent}
       </div>
     </Style>
   );

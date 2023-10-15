@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware, { END } from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension';
 
 import rootReducer from './reducer';
 import rootSaga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const bindMiddleware = (middleware) => composeWithDevTools(applyMiddleware(...middleware));
+const bindMiddleware = (middleware) => composeWithDevToolsDevelopmentOnly(applyMiddleware(...middleware));
 
 function configureStore(initialState = {}) {
   const store = createStore(
