@@ -10,9 +10,7 @@ import Style from './style';
 
 const { update_video } = videoActions;
 
-const FeedCard = ({
-  data, onClick, videoThumbnail, editable,
-}) => {
+const FeedCard = ({ data, onClick, videoThumbnail, editable }) => {
   const { id, videoType, status } = data;
 
   const dispatch = useDispatch();
@@ -20,8 +18,16 @@ const FeedCard = ({
 
   const CoverComponent = (
     <div className="video-play">
-      <div className="play-icon"> <IconPlay /> </div>
-      { status === 'streaming' && <div className="live-icon"> <IconLive /> </div>}
+      <div className="play-icon">
+        {' '}
+        <IconPlay />{' '}
+      </div>
+      {status === 'streaming' && (
+        <div className="live-icon">
+          {' '}
+          <IconLive />{' '}
+        </div>
+      )}
       <Image
         width={4}
         height={3}
@@ -52,12 +58,8 @@ const FeedCard = ({
 
   const menu = (
     <Menu onClick={onSelectMenu}>
-      <Menu.Item key="1">
-        Edit
-      </Menu.Item>
-      <Menu.Item key="2">
-        Delete
-      </Menu.Item>
+      <Menu.Item key="1">Edit</Menu.Item>
+      <Menu.Item key="2">Delete</Menu.Item>
     </Menu>
   );
 
@@ -65,36 +67,29 @@ const FeedCard = ({
     <Style>
       <div className="header">
         <div className="avatar">
-          <Avatar
-            alt="user_avatar"
-            src={data.avatar}
-          />
+          <Avatar alt="user_avatar" src={data.avatar} />
         </div>
-        <div className="username"><a href={`/space/${data.userId}`}> {data.username} </a> <span> {data?.createdAt} </span></div>
-        <div className="post-date">{data?.createdAt} {editable && `(${status})`}</div>
+        <div className="username">
+          <Link href={`/space/${data.userId}`}> {data.username} </Link> <span> {data?.createdAt} </span>
+        </div>
+        <div className="post-date">
+          {data?.createdAt} {editable && `(${status})`}
+        </div>
         <div className="edit">
-          { editable && (
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-              ...
-            </a>
-          </Dropdown>
-          ) }
+          {editable && (
+            <Dropdown overlay={menu}>
+              <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                ...
+              </a>
+            </Dropdown>
+          )}
         </div>
       </div>
       <div className="content">
-        <h4>
-          {data?.title}
-        </h4>
-        <div className="description">
-          {data?.description}
-        </div>
+        <h4>{data?.title}</h4>
+        <div className="description">{data?.description}</div>
         <div className="video-thumbnail">
-          <Link href={`/watch?v=${data.id}`}>
-            <a>
-              {CoverComponent}
-            </a>
-          </Link>
+          <Link href={`/watch?v=${data.id}`}>{CoverComponent}</Link>
         </div>
       </div>
     </Style>

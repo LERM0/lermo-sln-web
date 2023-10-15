@@ -1,14 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Avatar, Menu, Dropdown, Badge,
-} from 'antd';
-import {
-  PlayCircleOutlined, LogoutOutlined, UserOutlined,
-  MenuOutlined,
-  BellOutlined,
-} from '@ant-design/icons';
+import { Avatar, Menu, Dropdown, Badge } from 'antd';
+import { PlayCircleOutlined, LogoutOutlined, UserOutlined, MenuOutlined, BellOutlined } from '@ant-design/icons';
 
 import userActions from '@redux/user/actions';
 
@@ -40,22 +34,18 @@ const NotiBadge = ({ data = [] }) => {
 
   const count = data.filter((val) => val.status === 'UNREAD').length;
 
-  const menu = (
-    data.length > 0
-      ? (
-        <Menu style={{ width: '300px' }}>
-          {data.map((val, index) => (
-            <Menu.Item>
-              <a href={link(val)}>
-                { val.message }
-              </a>
-            </Menu.Item>
-          ))}
-        </Menu>
-      ) : (
-        <Menu style={{ display: 'none' }} />
-      )
-  );
+  const menu =
+    data.length > 0 ? (
+      <Menu style={{ width: '300px' }}>
+        {data.map((val, index) => (
+          <Menu.Item>
+            <Link href={link(val)}>{val.message}</Link>
+          </Menu.Item>
+        ))}
+      </Menu>
+    ) : (
+      <Menu style={{ display: 'none' }} />
+    );
 
   return (
     <Style>

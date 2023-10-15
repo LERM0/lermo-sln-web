@@ -1,6 +1,5 @@
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import 'antd/dist/antd.css';
 import 'swiper/swiper-bundle.min.css';
 
 import '../styles/globals.css';
