@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Form, Input, Button, Checkbox, Divider, Row, Modal,
-} from 'antd';
+import { Form, Input, Button, Checkbox, Divider, Row, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -27,7 +25,6 @@ const SignUp = () => {
     const { email, password } = values;
     const formData = {
       email,
-      username: email.substring(0, email.lastIndexOf('@')),
       password,
     };
     dispatch(register(formData));
@@ -50,7 +47,10 @@ const SignUp = () => {
           >
             <Form.Item>
               <Row justify="space-between">
-                <h2>Sign up</h2> <Button type="default" onClick={() => redirectToSignIn()}>sign in</Button>
+                <h2>Sign up</h2>{' '}
+                <Button type="default" onClick={() => redirectToSignIn()}>
+                  sign in
+                </Button>
               </Row>
             </Form.Item>
             <Form.Item
@@ -103,8 +103,7 @@ const SignUp = () => {
             >
               <Input.Password />
             </Form.Item>
-            <Form.Item>
-            </Form.Item>
+            <Form.Item></Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" block>
                 Register

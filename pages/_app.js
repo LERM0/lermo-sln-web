@@ -1,5 +1,9 @@
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import { ConfigProvider } from 'antd';
+import locale from 'antd/lib/locale/th_TH';
+import themeDefault from '@themes/default';
+
 import 'swiper/swiper-bundle.min.css';
 
 import '../styles/globals.css';
@@ -36,9 +40,11 @@ const theme = {
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <ConfigProvider locale={locale} theme={themeDefault}>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </ConfigProvider>
     </ThemeProvider>
   );
 }

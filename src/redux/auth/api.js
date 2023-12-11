@@ -7,7 +7,7 @@ export default {
     return Http.post(apiUrl, form);
   },
   fetchProfile() {
-    const apiUrl = `${Config.API_ENDPOINT}/users/profile`;
+    const apiUrl = `${Config.API_ENDPOINT}/auth/profile`;
     return HttpAuth.get(apiUrl);
   },
   forgot(form) {

@@ -7,7 +7,8 @@
       "@helpers/*": ["./src/helpers/*"],
       "@domains/*": ["./src/domains/*"],
       "@components/*": ["./src/components/*"],
-      "@config": ["./src/config"],
+      "@config/*": ["./src/config/*"],
+      "@themes/*": ["./src/themes/*"],
       "@pages/*": ["./pages/*"]
     }
   },

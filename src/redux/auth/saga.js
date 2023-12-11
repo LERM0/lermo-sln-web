@@ -1,6 +1,4 @@
-import {
-  all, takeEvery, call, put,
-} from 'redux-saga/effects';
+import { all, takeEvery, call, put } from 'redux-saga/effects';
 import { message } from 'antd';
 // import { getToken, getRefreshToken, clearToken } from '@helpers/auth';
 import Router from 'next/router';
@@ -14,13 +12,13 @@ function* login(payload) {
   const api = yield call(authAPI.login, form);
 
   if (api.status === '000') {
-    const { access_token } = api.data;
+    const { accessToken } = api.data;
 
     message.success('Login success');
-    yield call(setToken, access_token);
+    yield call(setToken, accessToken);
     yield put({
       type: actions.LOGIN_SUCCESS,
-      payload: access_token,
+      payload: accessToken,
     });
     yield put(actions.fetch_profile());
     Router.push('/');

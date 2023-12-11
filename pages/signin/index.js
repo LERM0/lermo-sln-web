@@ -15,7 +15,7 @@ import Style from './style';
 
 const { login } = authActions;
 
-const SignInPage = () => {
+const SignIn = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [form] = Form.useForm();
@@ -77,4 +77,4 @@ const SignInPage = () => {
   );
 };
 
-export default withAuth(UserTemplate, SignInPage);
+export default withAuth(UserTemplate, SignIn);

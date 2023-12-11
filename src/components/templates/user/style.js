@@ -117,9 +117,9 @@ export default styled.div`
   }
 
   /* Override Library */
-  .ant-btn {
+  /* .ant-btn {
     border-radius: 4px;
-  }
+  } */
 
   /*  Delete
   .ant-btn:hover, .ant-btn:focus {
@@ -127,7 +127,7 @@ export default styled.div`
     border-color: #FC665C;
   } */
 
-  .ant-btn-primary {
+  /* .ant-btn-primary {
     background: #fc665c;
     border-color: #fc665c;
     &:hover {
@@ -170,7 +170,7 @@ export default styled.div`
   .ant-checkbox-checked .ant-checkbox-inner {
     background-color: #d8575d;
     border-color: #d8575d;
-  }
+  } */
 
   @media only screen and (max-width: ${(props) => props.theme.medias.lg}) {
     .guest-container {
