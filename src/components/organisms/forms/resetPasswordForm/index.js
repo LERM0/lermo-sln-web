@@ -25,7 +25,7 @@ const ResetPasswordForm = ({ token }) => {
   };
 
   return (
-    <Form className="signin-form" layout="vertical" name="signin" form={form} onFinish={onFinish} scrollToFirstError>
+    <Form layout="vertical" name="signin" form={form} onFinish={onFinish} scrollToFirstError>
       <Form.Item>
         <Row justify="space-between">
           <h2>Reset Password</h2>{' '}

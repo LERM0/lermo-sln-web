@@ -75,10 +75,6 @@ export default styled.div`
     top: 64px;
   }
 
-  .guest-container {
-    /*  */
-  }
-
   .signup-container,
   .signin-container {
     width: 500px;

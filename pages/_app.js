@@ -44,7 +44,13 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <ConfigProvider locale={locale} theme={themeDefault}>
+      <ConfigProvider
+        locale={locale}
+        theme={{
+          ...themeDefault,
+          algorithm: theme.darkAlgorithm,
+        }}
+      >
         <Provider store={store}>
           <Layout>
             <Component {...pageProps} />
