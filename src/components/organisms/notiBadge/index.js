@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Avatar, Menu, Dropdown, Badge } from 'antd';
-import { PlayCircleOutlined, LogoutOutlined, UserOutlined, MenuOutlined, BellOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, Badge } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
 
 import userActions from '@redux/user/actions';
 
@@ -14,7 +14,6 @@ import Style from './style';
 const { update_noti } = userActions;
 
 const NotiBadge = ({ data = [] }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const onVisibleChange = (isVisible) => {
@@ -38,7 +37,7 @@ const NotiBadge = ({ data = [] }) => {
     data.length > 0 ? (
       <Menu style={{ width: '300px' }}>
         {data.map((val, index) => (
-          <Menu.Item>
+          <Menu.Item key={index}>
             <Link href={link(val)}>{val.message}</Link>
           </Menu.Item>
         ))}

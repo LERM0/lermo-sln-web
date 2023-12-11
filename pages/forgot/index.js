@@ -1,127 +1,17 @@
-import React, { useEffect } from 'react';
-import {
-  Form, Input, Button, Divider, Row,
-} from 'antd';
-import { FacebookFilled, GoogleCircleFilled } from '@ant-design/icons';
+import React from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import Config from '@config';
 
 import UserTemplate from '@components/templates/user';
-import withAuth from '@components/templates/withAuth';
 import Logo from '@components/atoms/logo';
-import authActions from '@redux/auth/actions';
-import userActions from '@redux/user/actions';
-import { setToken, getToken, removeToken } from '@domains/auth';
 
 import Style from './style';
+import ForgetPasswordForm from '@components/organisms/forms/forgetPasswordForm';
+import ResetPasswordForm from '@root/src/components/organisms/forms/resetPasswordForm';
 
-const { forgot } = authActions;
-const { resetPassword } = userActions;
-
-const ForgotPage = ({ token }) => {
+const ForgotPage = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const [form] = Form.useForm();
-  const userToken = token || router.query.token;
 
-  const { isLoadingBtn } = useSelector((state) => ({
-    isLoadingBtn: state.Auth.get('isLoadingSignIn'),
-  }));
-
-  useEffect(() => {
-    if (userToken) {
-      setToken(userToken);
-    }
-  }, []);
-
-  const redirectToSignUp = () => {
-    router.push('/signup');
-  };
-
-  const redirectToSignIn = () => {
-    router.push('/signin');
-  };
-
-  const onFinish = (values) => {
-    if (userToken) {
-      dispatch(resetPassword(values));
-      router.push('/signin');
-    } else {
-      dispatch(forgot(values));
-    }
-  };
-
-  const formComponent = () => {
-    let component;
-
-    if (userToken) {
-      component = (
-        <>
-          <Form.Item
-            label="Password"
-            name="password"
-            dependencies={['oldPassword']}
-            rules={[
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (getFieldValue('password') === value) {
-                    return Promise.resolve();
-                  }
-                  // eslint-disable-next-line prefer-promise-reject-errors
-                  return Promise.reject('Please insert your password!');
-                },
-              }),
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item
-            label="Confirm password"
-            name="confirmPassword"
-            dependencies={['password']}
-            rules={[
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (getFieldValue('password') === value) {
-                    return Promise.resolve();
-                  }
-                  // eslint-disable-next-line prefer-promise-reject-errors
-                  return Promise.reject('The two passwords that you entered do not match!');
-                },
-              }),
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block loading={isLoadingBtn}>
-              Reset Password
-            </Button>
-          </Form.Item>
-        </>
-      );
-    } else {
-      component = (
-        <>
-          <Form.Item
-            label="Email"
-            name="email"
-          >
-            <Input type="email" placeholder="ex. user@email.com" />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block loading={isLoadingBtn}>
-              Forgot Password
-            </Button>
-          </Form.Item>
-        </>
-      );
-    }
-
-    return component;
-  };
+  const { token: forgetPasswordToken } = router.query;
 
   return (
     <Style className="guest-container">
@@ -129,33 +19,15 @@ const ForgotPage = ({ token }) => {
         <div className="signin-navbar">
           <Logo />
         </div>
-        <Form
-          className="signin-form"
-          layout="vertical"
-          name="signin"
-          form={form}
-          onFinish={onFinish}
-          scrollToFirstError
-        >
-          <Form.Item>
-            <Row justify="space-between">
-              <h2>Sign in</h2> <Button type="default" onClick={() => redirectToSignIn()}>sign in</Button>
-            </Row>
-          </Form.Item>
 
-          { formComponent() }
-
-        </Form>
+        {forgetPasswordToken ? <ResetPasswordForm /> : <ForgetPasswordForm />}
       </div>
+
       <div className="img-container" />
     </Style>
   );
 };
 
-export const getServerSideProps = async ({ query }) => {
-  return {
-    props: { token: query.token || null },
-  };
-};
+ForgotPage.Layout = UserTemplate;
 
-export default withAuth(UserTemplate, ForgotPage);
+export default ForgotPage;

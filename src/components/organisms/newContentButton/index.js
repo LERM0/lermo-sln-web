@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
-import { Fab, Action } from 'react-tiny-fab';
-import { Button, Tooltip } from 'antd';
-import {
-  IconAddContent, IconAddVideo,
-} from '@components/atoms/icons';
+import { Button } from 'antd';
+import { IconAddContent, IconAddVideo } from '@components/atoms/icons';
 import { useDispatch, useSelector } from 'react-redux';
 
 import videoActions from '@redux/video/actions';
@@ -20,16 +17,13 @@ const NewContentButton = () => {
   const [btnClick, setBtnClick] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
-  const {
-    videoId, videoType, profile,
-  } = useSelector((state) => {
+  const { videoId, videoType, profile } = useSelector((state) => {
     return {
       videoId: state.Video.get('videoId'),
       videoType: state.Video.get('videoType'),
       profile: state.Auth.get('profile'),
     };
   });
-
 
   useEffect(() => {
     if (redirect && videoId && videoType === 'live') {
@@ -58,13 +52,38 @@ const NewContentButton = () => {
 
   return (
     <Style>
-      {profile
-        && (
-          <div className="button-container">
-            <Button className={`button-create-content-${showFab}`} type="primary" icon={<span className="icon"> <IconAddVideo /> </span>} onClick={onCreateVideo}> VIDEO </Button>
-            <Button className="button-create" type="primary" icon={<div className="icon"> <IconAddContent /> </div>} onClick={onCreate}> ADD CONTENT </Button>
-          </div>
-        )}
+      {profile && (
+        <div className="button-container">
+          <Button
+            className={`button-create-content-${showFab}`}
+            type="primary"
+            icon={
+              <span className="icon">
+                {' '}
+                <IconAddVideo />{' '}
+              </span>
+            }
+            onClick={onCreateVideo}
+          >
+            {' '}
+            VIDEO{' '}
+          </Button>
+          <Button
+            className="button-create"
+            type="primary"
+            icon={
+              <div className="icon">
+                {' '}
+                <IconAddContent />{' '}
+              </div>
+            }
+            onClick={onCreate}
+          >
+            {' '}
+            ADD CONTENT{' '}
+          </Button>
+        </div>
+      )}
     </Style>
   );
 };

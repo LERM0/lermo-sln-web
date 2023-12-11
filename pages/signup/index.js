@@ -117,4 +117,6 @@ const SignUp = () => {
   );
 };
 
-export default withAuth(UserTemplate, SignUp);
+SignUp.Layout = UserTemplate;
+
+export default withAuth(SignUp);

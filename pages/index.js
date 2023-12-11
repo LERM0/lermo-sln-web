@@ -68,10 +68,7 @@ const Home = () => {
         <meta property="og:url" content="http://lermo.io" />
         <meta property="og:type" content="Lermo – Social Learning Network" />
         <meta property="og:title" content="Lermo – Social Learning Network" />
-        <meta
-          property="og:description"
-          content="Lermo - Social Learning Network"
-        />
+        <meta property="og:description" content="Lermo - Social Learning Network" />
         <meta property="og:image" content="https://www.lermo.io/images/slider/slide2.png" />
       </Head>
       <NewContentButton />
@@ -84,8 +81,10 @@ const Home = () => {
           </Row>
         </div>
       </div>
-    </Style >
+    </Style>
   );
 };
 
-export default withAuth(UserSideMenuTemplate, Home);
+Home.Layout = UserSideMenuTemplate;
+
+export default Home;

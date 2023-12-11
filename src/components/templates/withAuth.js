@@ -7,7 +7,7 @@ import authActions from '@redux/auth/actions';
 
 const { fetch_profile, init_token } = authActions;
 
-const withAuth = (Template, Page) => {
+const withAuth = (Page) => {
   const Component = () => {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -45,11 +45,7 @@ const withAuth = (Template, Page) => {
 
     if (isLoading) return <LoadingPage />;
 
-    return (
-      <Template>
-        <Page />
-      </Template>
-    );
+    return Page;
   };
 
   return Component;

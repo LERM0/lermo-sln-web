@@ -169,4 +169,6 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 
-export default withAuth(UserTopbarTemplate, SpaceEdit);
+SpaceEdit.Layout = UserSideMenuTemplate;
+
+export default withAuth(SpaceEdit);

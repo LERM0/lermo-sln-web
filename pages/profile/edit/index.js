@@ -197,4 +197,6 @@ const EditPage = () => {
   );
 };
 
-export default withAuth(UserTopbarTemplate, EditPage);
+EditPage.Layout = UserTopbarTemplate;
+
+export default withAuth(EditPage);

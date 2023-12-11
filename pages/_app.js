@@ -37,12 +37,18 @@ const theme = {
   },
 };
 
+const DefaultLayout = ({ children }) => children;
+
 function MyApp({ Component, pageProps }) {
+  const Layout = Component.Layout || DefaultLayout;
+
   return (
     <ThemeProvider theme={theme}>
       <ConfigProvider locale={locale} theme={themeDefault}>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </Provider>
       </ConfigProvider>
     </ThemeProvider>

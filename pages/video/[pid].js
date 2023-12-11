@@ -6,10 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import videoActions from '@redux/video/actions';
 import withAuth from '@components/templates/withAuth';
 import LoadingPage from '@components/atoms/loadingPage';
-import {
-  generateVideoThumbnails,
-  importFileandPreview
-} from "@rajesh896/video-thumbnails-generator";
+import { generateVideoThumbnails, importFileandPreview } from '@rajesh896/video-thumbnails-generator';
 
 import Style from './style';
 
@@ -71,8 +68,6 @@ const VideoPage = ({ pid }) => {
     if (uploadVideoStatus === 'success') {
       setvideoUploadingPercent(100);
       setVideoUploadMessage('Upload Completed');
-
-
     }
     if (updateVideoStatus === 'success' && redirect) {
       setRedirect(false);
@@ -171,4 +166,6 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 
-export default withAuth(UserTemplate, VideoPage);
+VideoPage.Layout = UserTemplate;
+
+export default withAuth(VideoPage);
