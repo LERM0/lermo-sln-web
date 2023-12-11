@@ -7,9 +7,9 @@
       "@helpers/*": ["./src/helpers/*"],
       "@domains/*": ["./src/domains/*"],
       "@components/*": ["./src/components/*"],
-      "@config/*": ["./src/config/*"],
       "@themes/*": ["./src/themes/*"],
-      "@pages/*": ["./pages/*"]
+      "@pages/*": ["./pages/*"],
+      "@config": ["./src/config"]
     }
   },
   "exclude": ["node_modules"]
